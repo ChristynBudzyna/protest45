@@ -1,7 +1,18 @@
 class User < ActiveRecord::Base
-  has_secure_password
-  has_many :events
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable,
+				 :omniauthable, :omniauth_providers => [:facebook]
 
-  validates :email, :presence => true
-  validates :password, :presence => true
+	has_many :events
+
+	def self.from_omniauth(auth)
+	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+	    user.email = auth.info.email
+	    user.password = Devise.friendly_token[0,20]
+	    user.name = auth.info.name   # assuming the user model has a name
+	    user.avatar_URL = auth.info.image # assuming the user model has an image
+	  end
+	end
 end
