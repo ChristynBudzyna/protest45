@@ -4,6 +4,7 @@ class CreateEvents < ActiveRecord::Migration
       t.string :title
       t.string :location
       t.string :description
+      t.string :city
       t.date :date
       t.time :time
       t.string :facebook_url

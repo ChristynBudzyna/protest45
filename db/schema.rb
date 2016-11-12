@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20161112162744) do
     t.string   "title"
     t.string   "location"
     t.string   "description"
+    t.string   "city"
     t.date     "date"
     t.time     "time"
     t.string   "facebook_url"
