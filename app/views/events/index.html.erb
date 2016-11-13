@@ -1,39 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Events</h1>
+<h1>Protest 45</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Location</th>
-      <th>Description</th>
-      <th>Date</th>
-      <th>Time</th>
-      <th>Facebook url</th>
-      <th>Other url</th>
-      <th>Approved?</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
     <% @events.each do |event| %>
-      <tr>
-        <td><%= event.title %></td>
-        <td><%= event.location %></td>
-        <td><%= event.description %></td>
-        <td><%= event.date %></td>
-        <td><%= event.time %></td>
-        <td><%= event.facebook_url %></td>
-        <td><%= event.other_url %></td>
-        <td><%= event.approved? %></td>
-        <td><%= event.user %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+
+       <div class="">
+          <h3><%= link_to event.title, event %></h3>
+          <p><%= event.date %> - <%= event.time %></p>
+          <p><%= event.location %></p>
+          <p><%= event.description %></p>
+
+          <% if event.facebook_url %>
+            <%= link_to 'Go', event.facebook_url %>
+          <% else %>
+            <%= link_to 'Go', event.other_url %>
+          <% end %>
+      </div>
     <% end %>
   </tbody>
 </table>
