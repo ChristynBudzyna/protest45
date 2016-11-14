@@ -3,10 +3,10 @@ class CreateEvents < ActiveRecord::Migration
     create_table :events do |t|
       t.string     :title
       t.string     :location
+      t.string     :address
       t.string     :description
       t.string     :city
-      t.date       :date
-      t.time       :time
+      t.datetime   :datetime
       t.string     :facebook_url
       t.string     :other_url
       t.boolean    :approved?, :default => false
