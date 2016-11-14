@@ -40,7 +40,11 @@
         <%= f.label :location %>
       </div>
       <div class="col-sm-9">        
-        <%= f.text_field :location %>
+        <%= select_tag( 'event[location]',
+              options_for_select([['Select a Location',nil],
+                                  ['Washington, DC','Washington, DC'],
+                                  ['New York, NY','New York, NY'],
+                                  ['San Francisco, CA','San Francisco, CA'] ])) %>
       </div>
     </div>
 
@@ -69,7 +73,10 @@
         <%= f.label :event_source %>
       </div>
       <div class="col-sm-9">
-        <%= f.text_field :event_source %>
+        <%= select_tag( 'event[event_source]',
+              options_for_select([['Facebook','Facebook'],
+                                  ['Meetup.com','Meetup.com'],
+                                  ['Other','Other'] ])) %>
       </div>
     </div>
 
