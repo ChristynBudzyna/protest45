@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
 				 :omniauthable, :omniauth_providers => [:facebook]
 
 	has_many :events_owned, foreign_key: "user_id", class_name: "Event"
-	has_many :events_attending, foreign_key: "user_id", class_name: "UserEvent"
 
 	def self.from_omniauth(auth)
 	  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
