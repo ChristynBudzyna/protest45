@@ -17,22 +17,12 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @event.date %>
+  <%= @event.datetime %>
 </p>
 
 <p>
-  <strong>Time:</strong>
-  <%= @event.time %>
-</p>
-
-<p>
-  <strong>Facebook url:</strong>
-  <%= @event.facebook_url %>
-</p>
-
-<p>
-  <strong>Other url:</strong>
-  <%= @event.other_url %>
+  <strong>Link:</strong>
+  <%= @event.url %>
 </p>
 
 <p>
@@ -41,8 +31,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @event.user %>
+  <strong>Event Creator:</strong>
+  <%= @event.user.name %>
 </p>
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
