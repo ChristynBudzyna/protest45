@@ -2,6 +2,7 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
+
   # GET /events
   def index
     @events = Event.all
@@ -18,6 +19,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    guard_against_tampering(@event)
   end
 
   # POST /events
@@ -34,6 +36,7 @@ class EventsController < ApplicationController
 
   # PATCH/PUT /events/1
   def update
+    guard_against_tampering(@event)
     if @event.update(event_params)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
@@ -43,6 +46,7 @@ class EventsController < ApplicationController
 
   # DELETE /events/1
   def destroy
+    guard_against_tampering(@event)
     @event_tags = EventTag.where(event_id: @event.id)
     @event_tags.each { |event_tag| event_tag.destroy }
     @event.destroy
@@ -53,6 +57,15 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    # Warden method to prevent non-admins from editing content that is not their own
+    def guard_against_tampering(event)
+      if event.user != current_user # Must be the event's owner
+        if current_user.admin? != true # or they must be a site Administrator
+          redirect_to event, alert: "You are not the creator of this event or a Protest45 Admin."
+        end
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
