@@ -2,9 +2,9 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.references :user, index: true, foreign_key: true
-      t.string     :title
-      t.text       :description
-      t.datetime   :datetime
+      t.string     :title, null: false
+      t.text       :description, null: false
+      t.datetime   :datetime, null: false
 
       # Location information
       t.string     :address1, default: ""
@@ -14,7 +14,7 @@ class CreateEvents < ActiveRecord::Migration
       t.integer    :zip, null: false
 
       # Dropdown-selectable location category (i.e. New York, DC, San Francisco, Portland, etc)
-      t.string     :location
+      t.string     :location, null: false
       
       # Link to event off-site from Protest45 for more info/original source
       t.string     :url
