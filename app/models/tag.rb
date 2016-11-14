@@ -1,3 +1,4 @@
 class Tag < ActiveRecord::Base
-  belongs_to :event
+	has_many :eventTags
+	has_many :events, through: :eventTags
 end
