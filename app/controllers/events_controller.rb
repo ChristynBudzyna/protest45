@@ -1,14 +1,14 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+
 
   # GET /events
-  # GET /events.json
   def index
     @events = Event.all
   end
 
   # GET /events/1
-  # GET /events/1.json
   def show
   end
 
@@ -19,46 +19,38 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    guard_against_tampering(@event)
   end
 
   # POST /events
-  # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.user = current_user
 
-    respond_to do |format|
-      if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
-      else
-        format.html { render :new }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    if @event.save
+      redirect_to @event, notice: 'Event was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /events/1
-  # PATCH/PUT /events/1.json
   def update
-    respond_to do |format|
-      if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
-      else
-        format.html { render :edit }
-        format.json { render json: @event.errors, status: :unprocessable_entity }
-      end
+    guard_against_tampering(@event)
+    if @event.update(event_params)
+      redirect_to @event, notice: 'Event was successfully updated.'
+    else
+      render :edit
     end
   end
 
   # DELETE /events/1
-  # DELETE /events/1.json
   def destroy
+    guard_against_tampering(@event)
+    @event_tags = EventTag.where(event_id: @event.id)
+    @event_tags.each { |event_tag| event_tag.destroy }
     @event.destroy
-    respond_to do |format|
-      format.html { redirect_to events_url, notice: 'Event was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to events_url, notice: "Your event, '#{@event.title}' was successfully deleted."
   end
 
   private
@@ -67,8 +59,31 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    # Warden method to prevent non-admins from editing content that is not their own
+    def guard_against_tampering(event)
+      if event.user != current_user # Must be the event's owner
+        if current_user.admin? != true # or they must be a site Administrator
+          redirect_to event, alert: "You are not the creator of this event or a Protest45 Admin."
+        end
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :location, :description, :date, :time, :facebook_url, :other_url, :approved?, :user_id)
+      params.require(:event).permit(
+        :user_id,
+        :title,
+        :description,
+        :datetime,
+        :address1,
+        :address2,
+        :city,
+        :state,
+        :zip,
+        :location,
+        :url,
+        :event_source,
+        :approved?)
     end
+
 end

@@ -9,7 +9,9 @@
 <body>
 <nav>
 	<ul>
+		<li><a href="/">Home</a></li>
 	<% if user_session %>
+		<li><a href="/events/new">Post a New Event</a></li>
 		<li><a href="/users/sign_out">Sign Out</a></li>
 	<% else %>
 		<li><a href="/users/sign_up">Register</a></li>
@@ -17,9 +19,6 @@
 	<% end %>
 	</ul>
 </nav>
-
-<p class="notice"><%= notice %></p>
-<p class="alert"><%= alert %></p>
 
 <%= yield %>
 

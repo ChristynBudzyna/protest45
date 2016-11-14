@@ -7,14 +7,12 @@
 
        <div class="">
           <h3><%= link_to event.title, event %></h3>
-          <p><%= event.date %> - <%= event.time %></p>
+          <p><%= event.datetime %></p>
           <p><%= event.location %></p>
           <p><%= event.description %></p>
 
-          <% if event.facebook_url %>
-            <%= link_to 'Go', event.facebook_url %>
-          <% else %>
-            <%= link_to 'Go', event.other_url %>
+          <% if event.url %>
+            <%= link_to 'Go', event.url %>
           <% end %>
       </div>
     <% end %>
