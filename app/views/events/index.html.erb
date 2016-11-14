@@ -1,25 +1,25 @@
 <p id="notice"><%= notice %></p>
+
 <div class="container">
-<h1>Listing Events</h1>
 
 
+<h1>Protest 45</h1>
 
 
     <% @events.each do |event| %>
-    <ul>
-        <li class="e-title"><%= event.title %></li>
-        <li class="e-loc"><td><%= event.location %></li>
-        <li class="e-desc"><td><%= event.description %></li>
-        <li class="e-date"><td><%= event.date %></li>
-        <li class="e-time"><td><%= event.time %></li>
-        <li class="e-url"><td><%= event.facebook_url %></li>
-        <li class="e-url-secondary"><td><%= event.other_url %></li>
-        <li class="e-appr"><%= event.approved? %></li>
-        <li class="e-user"><%= event.user %></li>
-        <li><%= link_to 'Show', event %></li>
-        <li><%= link_to 'Edit', edit_event_path(event) %></li>
-        <li><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-     </ul>
+
+       <div class="">
+          <h3><%= link_to event.title, event %></h3>
+          <p><%= event.date %> - <%= event.time %></p>
+          <p><%= event.location %></p>
+          <p><%= event.description %></p>
+
+          <% if event.facebook_url %>
+            <%= link_to 'Go', event.facebook_url %>
+          <% else %>
+            <%= link_to 'Go', event.other_url %>
+          <% end %>
+      </div>
     <% end %>
 
 
