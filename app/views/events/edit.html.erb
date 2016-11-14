@@ -2,5 +2,11 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @event %> |
-<%= link_to 'Back', events_path %>
+<br><br>
+
+<small>Warning: This action cannot be undone!</small><br>
+<%= button_to "Delete #{@event.title}?", event_path, method: "delete" %>
+
+<br><br>
+<%= link_to "Back to #{@event.title}", @event %> |
+<%= link_to 'Back to Events', events_path %>
