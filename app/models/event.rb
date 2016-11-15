@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
   belongs_to :user
-	has_many :eventTags
-	has_many :tags, through: :eventTags
+	has_many :event_tags
+	has_many :tags, through: :event_tags
 
   validates :user_id, :title, :description, :datetime, :city, :state, :zip, :location,
   	:presence => true
