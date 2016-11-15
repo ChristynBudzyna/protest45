@@ -39,12 +39,13 @@
       <div class="col-sm-3">
         <%= f.label :location %>
       </div>
-      <div class="col-sm-9">        
+      <div class="col-sm-9">
         <%= select_tag( 'event[location]',
               options_for_select([['Select a Location',nil],
                                   ['Washington, DC','Washington, DC'],
                                   ['New York, NY','New York, NY'],
-                                  ['San Francisco, CA','San Francisco, CA'] ])) %>
+                                  ['San Francisco, CA','San Francisco, CA'], ['Los Angeles, CA','Los Angeles, CA'],
+                                  ['Boston, MA','Boston, MA'], ['Chicago, IL','Chicago, IL'] ])) %>
       </div>
     </div>
 

@@ -1,23 +1,58 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <p id="notice"><%= notice %></p>
 
 <h1>Protest 45</h1>
 
+<ul class="nav nav-tabs">
+  <li class="active"><a data-toggle="tab" href="#dc">Washington, DC</a></li>
+  <li><a data-toggle="tab" href="#ny">New York, NY</a></li>
+  <li><a data-toggle="tab" href="#sf">San Francisco, CA</a></li>
+  <li><a data-toggle="tab" href="#la">Los Angeles, CA</a></li>
+  <li><a data-toggle="tab" href="#bos">Boston, MA</a></li>
+  <li><a data-toggle="tab" href="#chi">Chicago, IL</a></li>
+</ul>
 
-    <% @events.each do |event| %>
-
-       <div class="">
-          <h3><%= link_to event.title, event %></h3>
-          <p><%= event.datetime %></p>
-          <p><%= event.location %></p>
-          <p><%= event.description %></p>
-
-          <% if event.url %>
-            <%= link_to 'Go', event.url %>
-          <% end %>
-      </div>
-    <% end %>
-  </tbody>
-</table>
+<div class="tab-content">
+  <div id="dc" class="tab-pane fade in active">
+    <h3>Washington, DC Events</h3>
+     <% @dcevents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+  <div id="ny" class="tab-pane fade">
+    <h3>New York City Events</h3>
+      <% @nyevents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+  <div id="sf" class="tab-pane fade">
+    <h3>San Francisco Events</h3>
+     <% @sfevents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+  <div id="la" class="tab-pane fade">
+    <h3>Los Angeles Events</h3>
+     <% @laevents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+  <div id="bos" class="tab-pane fade">
+    <h3>Boston Events</h3>
+     <% @bosevents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+  <div id="chi" class="tab-pane fade">
+    <h3>Chicago Events</h3>
+     <% @chievents.each do |event| %>
+        <%= render partial: "eventlist", locals: { event: event } %>
+      <% end %>
+  </div>
+</div>
 
 <br>
 
