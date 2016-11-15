@@ -1,4 +1,8 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+
 <%= form_for(@event) do |f| %>
+  <!-- For Error handling -->
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,43 +15,121 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-  <div class="field">
-    <%= f.label :location %><br>
-    <%= f.text_field :location %>
-  </div>
-  <div class="field">
-    <%= f.label :description %><br>
-    <%= f.text_field :description %>
-  </div>
-  <div class="field">
-    <%= f.label :date %><br>
-    <%= f.date_select :date %>
-  </div>
-  <div class="field">
-    <%= f.label :time %><br>
-    <%= f.time_select :time %>
-  </div>
-  <div class="field">
-    <%= f.label :facebook_url %><br>
-    <%= f.text_field :facebook_url %>
-  </div>
-  <div class="field">
-    <%= f.label :other_url %><br>
-    <%= f.text_field :other_url %>
-  </div>
-  <div class="field">
-    <%= f.label :approved? %><br>
-    <%= f.check_box :approved? %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+  <!-- Mandatory info -->
+<div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label  :title %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :title %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :description %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_area :description %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :location %>
+      </div>
+      <div class="col-sm-9">
+        <%= select_tag( 'event[location]',
+              options_for_select([['Select a Location',nil],
+                                  ['Washington, DC','Washington, DC'],
+                                  ['New York, NY','New York, NY'],
+                                  ['San Francisco, CA','San Francisco, CA'], ['Los Angeles, CA','Los Angeles, CA'],
+                                  ['Boston, MA','Boston, MA'], ['Chicago, IL','Chicago, IL'] ])) %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <%= f.label "Date and Time" %>
+      </div>
+      <div class="col-sm-12">
+        <%= f.datetime_select(:datetime, ampm: true ) %>
+      </div>
+    </div>
+
+  <!-- URL -->
+    <br><br>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label "URL" %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :url %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :event_source %>
+      </div>
+      <div class="col-sm-9">
+        <%= select_tag( 'event[event_source]',
+              options_for_select([['Facebook','Facebook'],
+                                  ['Meetup.com','Meetup.com'],
+                                  ['Other','Other'] ])) %>
+      </div>
+    </div>
+
+  <!-- Address for Maps-->
+    <br><br>
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :address1 %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :address1 %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :address2 %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :address2 %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :city %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :city %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :state %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :state %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :zip %>
+      </div>
+      <div class="col-sm-9">
+        <%= f.text_field :zip %>
+      </div>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
+</div>
 <% end %>
