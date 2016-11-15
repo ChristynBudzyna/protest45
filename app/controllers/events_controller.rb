@@ -5,7 +5,12 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @events = Event.all
+    @nyevents = Event.where(location = "New York, NY")
+    @sfevents = Event.where(location = "San Francisco, CA")
+    @chievents = Event.where(location = "Chicago, IL")
+    @bosevents = Event.where(location = "Boston, MA")
+    @laevents = Event.where(location = "Los Angeles, CA")
+    @dcevents = Event.where(location = "Washington, DC")
   end
 
   # GET /events/1
