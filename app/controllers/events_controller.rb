@@ -5,12 +5,12 @@ class EventsController < ApplicationController
 
   # GET /events
   def index
-    @nyevents = Event.where(location = "New York, NY")
-    @sfevents = Event.where(location = "San Francisco, CA")
-    @chievents = Event.where(location = "Chicago, IL")
-    @bosevents = Event.where(location = "Boston, MA")
-    @laevents = Event.where(location = "Los Angeles, CA")
-    @dcevents = Event.where(location = "Washington, DC")
+    @nyevents = Event.where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @sfevents = Event.where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @chievents = Event.where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @bosevents = Event.where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @laevents = Event.where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @dcevents = Event.where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
   end
 
   # GET /events/1
