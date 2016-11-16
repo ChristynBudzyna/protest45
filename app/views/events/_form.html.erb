@@ -128,6 +128,21 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :tags%>
+      </div>
+      <div class="col-sm-9">
+        <select name="event[event_tag]" id="event_event_tag">
+          <%@tags.each do |tag|%>
+            <option value=<%=tag.id%>>
+              <%=tag.name%>
+            </option>
+          <%end%>
+        </select>
+      </div>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
