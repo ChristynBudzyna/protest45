@@ -29,7 +29,7 @@ gem 'bcrypt', '~> 3.1.7'
 # Use Devise and OmniAuth schemes for User Authentication
 gem 'devise'
 gem 'omniauth-facebook'
-gem 'bootstrap-sass', '~> 3.3.6'
+
 
 group :development, :test do
   gem 'pry-rails'

@@ -1,8 +1,13 @@
+
 html{
   height:100%;
 
 }
+a:hover{
+  text-decoraton:none !important;
+}
 body{
+color:red;
 padding:3em;
 font-family: 'Montserrat', sans-serif;
 height:100%;
@@ -18,6 +23,7 @@ background-size:cover;
 
 ul{
   list-style:none;
+  color:red;
 }
 .container{
   background-color:#fff;
@@ -36,4 +42,7 @@ ul{
   color: #B2242F;
   font-weight:bold;
   font-size:3em;
+}
+nav{
+  color:red;
 }

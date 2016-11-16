@@ -2,19 +2,18 @@
 <html>
 <head>
   <title>Protest45</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <%= stylesheet_link_tag '//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css' %>
+
   <%= csrf_meta_tags %>
 </head>
 <body>
 <nav>
 	<ul>
 
-    <li id="logo"><span id="logo-primary">protest</span><span id="logo-secondary">45</span></li>
-
-		<li><a href="/">Home</a></li>
+    <a href="/"><li id="logo"><span id="logo-primary">protest</span><span id="logo-secondary">45</span></li></a>
 
 	<% if user_session %>
 		<li><a href="/events/new">Post a New Event</a></li>
