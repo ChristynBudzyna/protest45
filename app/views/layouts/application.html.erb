@@ -2,7 +2,8 @@
 <html>
 <head>
   <title>Protest45</title>
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
@@ -28,8 +29,10 @@
 <%= yield %>
 
 <footer>
+
 	<% if current_user %>
-		<p>You are logged in as <%= current_user.name %></p>
+		<p>You are logged in as <%= current_user.email %></p>
+
 	<% end %>
 </footer>
 </body>

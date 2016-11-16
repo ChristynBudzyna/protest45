@@ -1,4 +1,4 @@
 class Tag < ActiveRecord::Base
-	has_many :eventTags
-	has_many :events, through: :eventTags
+	has_many :event_tags
+	has_many :events, through: :event_tags
 end
