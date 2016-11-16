@@ -4,7 +4,7 @@ html{
 
 }
 a:hover{
-  text-decoraton:none !important;
+  text-decoration:none !important;
 }
 body{
 color:red;
@@ -23,7 +23,10 @@ background-size:cover;
 
 ul{
   list-style:none;
-  color:red;
+
+}
+li{
+  list-style:none !important;
 }
 .container{
   background-color:#fff;
@@ -43,6 +46,33 @@ ul{
   font-weight:bold;
   font-size:3em;
 }
-nav{
-  color:red;
+.navbar{
+  border:none !important;
 }
+.homenav{
+  background-color:transparent !important;
+}
+.navbar-toggle {
+border:none;
+  border: none;
+  background: transparent !important; }
+  .navbar-toggle:hover {
+    background: transparent !important; }
+  .navbar-toggle .icon-bar {
+    width: 22px;
+    transition: all 0.2s; }
+  .navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%; }
+  .navbar-toggle .middle-bar {
+    opacity: 0; }
+  .navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%; }
+
+.navbar-toggle.collapsed .top-bar {
+  transform: rotate(0); }
+.navbar-toggle.collapsed .middle-bar {
+  opacity: 1; }
+.navbar-toggle.collapsed .bottom-bar {
+  transform: rotate(0); }
