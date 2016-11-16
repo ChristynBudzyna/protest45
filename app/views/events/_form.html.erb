@@ -133,13 +133,7 @@
         <%= f.label :tags%>
       </div>
       <div class="col-sm-9">
-        <select name="event[event_tag]" id="event_event_tag">
-          <%@tags.each do |tag|%>
-            <option value=<%=tag.id%>>
-              <%=tag.name%>
-            </option>
-          <%end%>
-        </select>
+      <%= f.collection_select :tags, @tags, :id, :name, {include_hidden: false, selected: 1}, {multiple: true}%>
       </div>
     </div>
 
