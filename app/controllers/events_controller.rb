@@ -2,7 +2,6 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
-
   # GET /events
   def index
     @nyevents = Event.where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
@@ -11,6 +10,7 @@ class EventsController < ApplicationController
     @bosevents = Event.where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @laevents = Event.where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @dcevents = Event.where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @tags = Tag.all
   end
 
   # GET /events/1
@@ -20,6 +20,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @tags = Tag.all
   end
 
   # GET /events/1/edit
@@ -33,8 +34,12 @@ class EventsController < ApplicationController
     @event.user = current_user
 
     if @event.save
+      params[:event][:tags].each do |tag|
+        EventTag.create(event_id: @event.id, tag_id: tag)
+      end
       redirect_to @event, notice: 'Event was successfully created.'
     else
+      @tags = Tag.all
       render :new
     end
   end
@@ -88,7 +93,7 @@ class EventsController < ApplicationController
         :location,
         :url,
         :event_source,
+        :tags,
         :approved?)
     end
-
 end

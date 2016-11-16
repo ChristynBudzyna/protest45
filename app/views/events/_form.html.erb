@@ -128,6 +128,15 @@
       </div>
     </div>
 
+    <div class="row">
+      <div class="col-sm-3">
+        <%= f.label :tags%>
+      </div>
+      <div class="col-sm-9">
+      <%= f.collection_select :tags, @tags, :id, :name, {include_hidden: false, selected: 1}, {multiple: true}%>
+      </div>
+    </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>
