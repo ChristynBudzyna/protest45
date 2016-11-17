@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :events
 
   get '/'=> 'events#index'
+   get '/tips', to: 'pages#tips'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
