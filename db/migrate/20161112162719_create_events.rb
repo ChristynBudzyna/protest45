@@ -15,13 +15,13 @@ class CreateEvents < ActiveRecord::Migration
 
       # Dropdown-selectable location category (i.e. New York, DC, San Francisco, Portland, etc)
       t.string     :location, null: false
-      
+
       # Link to event off-site from Protest45 for more info/original source
       t.string     :url
       t.string     :event_source # i.e. dropdown selectable Facebook, Meetup, Craigslist, Other
 
       # for Admin users
-      t.boolean    :approved?, :default => false
+      t.boolean    :approved, :default => false
 
       t.timestamps null: false
     end

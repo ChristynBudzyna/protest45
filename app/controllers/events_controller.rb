@@ -4,12 +4,12 @@ class EventsController < ApplicationController
 
   # GET /evefnts
   def index
-    @nyevents = Event.where(approved?:true).where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @sfevents = Event.where(approved?:true).where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @chievents = Event.where(approved?:true).where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @bosevents = Event.where(approved?:true).where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @laevents = Event.where(approved?:true).where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @dcevents = Event.where(approved?:true).where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @nyevents = Event.where(approved:true).where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @sfevents = Event.where(approved:true).where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @chievents = Event.where(approved:true).where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @bosevents = Event.where(approved:true).where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @laevents = Event.where(approved:true).where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @dcevents = Event.where(approved:true).where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @tags = Tag.all
   end
 
@@ -93,7 +93,7 @@ class EventsController < ApplicationController
         :zip,
         :location,
         :url,
-        :approved?,
+        :approved,
         :event_source,
         :tags,)
     end

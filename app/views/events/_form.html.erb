@@ -130,7 +130,7 @@
       </div>
     </div>
 
-     <div class="row">
+           <div class="row">
       <div class="col-sm-3">
         <%= f.label :tags%>
       </div>
@@ -140,11 +140,12 @@
     </div>
 
 
+
     <% if current_user.admin? %>
     <div class="row">
       <div class="col-sm-3">
-         <%= f.label :approved? %> <br />
-        <%= f.select :approved?, [['true', true], ['false', false]], :class => "browser-default"%>
+         <%= f.label :approved %> <br />
+        <%= f.select :approved, [['true', true], ['false', false]], :class => "browser-default"%>
       </div>
     </div>
     <% end %>

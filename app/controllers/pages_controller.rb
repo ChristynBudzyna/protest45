@@ -4,7 +4,7 @@ def tips
 end
 
 def admin
-  @events = Event.where(approved?: false)
+  @events = Event.where(approved: false)
 end
 
 end
