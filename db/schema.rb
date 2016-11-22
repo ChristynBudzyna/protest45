@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20161114165309) do
     t.string   "location",                     null: false
     t.string   "url"
     t.string   "event_source"
-    t.boolean  "approved?",    default: false
+    t.boolean  "approved",     default: false
     t.datetime "created_at",                   null: false
     t.datetime "updated_at",                   null: false
   end
