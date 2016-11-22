@@ -10,7 +10,7 @@ class EventsController < ApplicationController
     @bosevents = Event.where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @laevents = Event.where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @dcevents = Event.where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @tags = Tag.all
+    set_tags  
   end
 
   # GET /events/1
@@ -20,27 +20,27 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    @tags = Tag.all
+    set_tags  
   end
 
   # GET /events/1/edit
   def edit
     guard_against_tampering(@event)
+    set_tags  
   end
 
   # POST /events
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-
     if @event.save
-      params[:event][:tags].each do |tag|
-        EventTag.create(event_id: @event.id, tag_id: tag)
+      @event_tag = EventTag.new(event_id: @event.id, tag_id: Tag.find(params[:event][:tag]).id)
+      if @event_tag.save
+        redirect_to @event, notice: 'Event was successfully created.'
+      else
+        set_tags  
+        render :new
       end
-      redirect_to @event, notice: 'Event was successfully created.'
-    else
-      @tags = Tag.all
-      render :new
     end
   end
 
@@ -69,6 +69,10 @@ class EventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def set_tags
+      @tags = Tag.all
+    end
+
     # Warden method to prevent non-admins from editing content that is not their own
     def guard_against_tampering(event)
       if event.user != current_user # Must be the event's owner
@@ -93,7 +97,6 @@ class EventsController < ApplicationController
         :location,
         :url,
         :event_source,
-        :tags,
         :approved?)
     end
 end
