@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   get '/'=> 'events#index'
    get '/tips', to: 'pages#tips'
+   get '/admin', to: 'pages#admin'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'

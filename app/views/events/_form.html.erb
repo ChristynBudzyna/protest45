@@ -35,6 +35,8 @@
       </div>
     </div>
 
+
+
     <div class="row">
       <div class="col-sm-3">
         <%= f.label :location %>
@@ -128,15 +130,26 @@
       </div>
     </div>
 
-    <div class="row">
+           <div class="row">
       <div class="col-sm-3">
         <%= f.label :tags%>
       </div>
-      <div class="col-sm-9">
+     <div class="col-sm-9">
       <%= f.collection_select :tags, @tags, :id, :name, {include_hidden: false, selected: 1}, {multiple: true}%>
       </div>
     </div>
 
+
+
+    <% if current_user.admin? %>
+    <div class="row">
+      <div class="col-sm-3">
+         <%= f.label :approved %> <br />
+        <%= f.select :approved, [['true', true], ['false', false]], :class => "browser-default"%>
+      </div>
+    </div>
+    <% end %>
+›
   <div class="actions">
     <%= f.submit %>
   </div>

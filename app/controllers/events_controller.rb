@@ -2,14 +2,14 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
-  # GET /events
+  # GET /evefnts
   def index
-    @nyevents = Event.where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @sfevents = Event.where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @chievents = Event.where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @bosevents = Event.where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @laevents = Event.where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @dcevents = Event.where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @nyevents = Event.where(approved:true).where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @sfevents = Event.where(approved:true).where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @chievents = Event.where(approved:true).where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @bosevents = Event.where(approved:true).where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @laevents = Event.where(approved:true).where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @dcevents = Event.where(approved:true).where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @tags = Tag.all
   end
 
@@ -37,7 +37,7 @@ class EventsController < ApplicationController
       params[:event][:tags].each do |tag|
         EventTag.create(event_id: @event.id, tag_id: tag)
       end
-      redirect_to @event, notice: 'Event was successfully created.'
+      redirect_to @event, notice: 'Thank you for submitting an event! It will be reviewed by an administrator shortly.'
     else
       @tags = Tag.all
       render :new
@@ -48,6 +48,7 @@ class EventsController < ApplicationController
   def update
     guard_against_tampering(@event)
     if @event.update(event_params)
+      binding.pry
       redirect_to @event, notice: 'Event was successfully updated.'
     else
       render :edit
@@ -92,8 +93,8 @@ class EventsController < ApplicationController
         :zip,
         :location,
         :url,
+        :approved,
         :event_source,
-        :tags,
-        :approved?)
+        :tags,)
     end
 end
