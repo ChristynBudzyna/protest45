@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :set_event, except: [:index, :new, :create]
+  before_action :set_tags, except: [:update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /evefnts
   def index
@@ -10,7 +11,6 @@ class EventsController < ApplicationController
     @bosevents = Event.where(approved:true).where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @laevents = Event.where(approved:true).where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @dcevents = Event.where(approved:true).where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    set_tags
   end
 
   # GET /events/1
@@ -20,13 +20,11 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-    set_tags  
   end
 
   # GET /events/1/edit
   def edit
     guard_against_tampering(@event)
-    set_tags  
   end
 
   # POST /events
@@ -34,22 +32,23 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.user = current_user
     if @event.save
-      @event_tag = EventTag.new(event_id: @event.id, tag_id: Tag.find(params[:event][:tag]).id)
-      if @event_tag.save
-        redirect_to @event, notice: 'Thank you for submitting an event! It will be reviewed by an administrator shortly.'
-      else
-        set_tags  
-        render :new
-      end
+      EventTag.create(event_id: @event.id, tag_id: Tag.find(params[:event][:tag]).id)
+      redirect_to @event, notice: 'Thank you for submitting an event! It will be reviewed by an administrator shortly.'
+    else
+      set_tags  
+      render :new
     end
   end
 
   # PATCH/PUT /events/1
   def update
     guard_against_tampering(@event)
-    if @event.update(event_params)
+    tag = Tag.find(params[:event][:tag])
+    @event_tag = EventTag.find_by(event_id: @event.id)
+    if @event.update(event_params) && @event_tag.update(tag_id: tag.id)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
+      set_tags
       render :edit
     end
   end
@@ -97,7 +96,6 @@ class EventsController < ApplicationController
         :location,
         :url,
         :approved,
-        :event_source,
-        :approved?)
+        :event_source)
     end
 end
