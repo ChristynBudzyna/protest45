@@ -10,7 +10,7 @@
     <span><%= event.city %></span>,<span> <%= event.state %></span><span> <%= event.zip %> </span>
   <p>Description: <%= event.description %></p>
 
-  <% if event.url %>
+  <% if event.url != "" %>
     <%= link_to 'Go', event.url %>
   <% end %>
 </div>
