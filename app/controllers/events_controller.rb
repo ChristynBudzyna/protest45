@@ -66,6 +66,7 @@ class EventsController < ApplicationController
 
   def filter_by_tag
     if params[:event][:tag_id] == ""
+      flash[:notice] = "You must select a tag."
       redirect_to :back
     else
       tag = Tag.find(params[:event][:tag_id])
