@@ -7,6 +7,12 @@
 <h1>Protest 45</h1>
 <%=link_to "Tips for Attending Protests", tips_path%>
 
+<%=form_tag filter_by_tag_path, method: 'get' do %>
+  <p>Filter by Tag: <%=collection_select :event, :tag_id, Tag.all, :id, :name, include_blank: "Please Select a Tag"%>
+    <%=submit_tag "Filter"%>
+  </p>
+<%end%>
+
 <ul class="nav nav-tabs">
   <li class="active"><a data-toggle="tab" href="#dc">Washington, DC</a></li>
   <li><a data-toggle="tab" href="#ny">New York, NY</a></li>

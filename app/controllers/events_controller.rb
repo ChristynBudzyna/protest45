@@ -1,9 +1,9 @@
 class EventsController < ApplicationController
-  before_action :set_event, except: [:index, :new, :create]
-  before_action :set_tags, except: [:update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
 
-  # GET /evefnts
+  # GET /events
   def index
     @nyevents = Event.where(approved:true).where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
     @sfevents = Event.where(approved:true).where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
@@ -60,6 +60,17 @@ class EventsController < ApplicationController
     @event_tags.each { |event_tag| event_tag.destroy }
     @event.destroy
     redirect_to events_url, notice: "Your event, '#{@event.title}' was successfully deleted."
+  end
+
+  #Filter Events By Tags
+
+  def filter_by_tag
+    if params[:event][:tag_id] == ""
+      redirect_to :back
+    else
+      tag = Tag.find(params[:event][:tag_id])
+      @events = tag.events
+    end
   end
 
   private
