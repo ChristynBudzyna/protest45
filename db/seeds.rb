@@ -1,3 +1,5 @@
-Tag.create!(name: "Protest")
-Tag.create!(name: "Rally")
-Tag.create!(name: "Meeting")
+Tag.create!(name: "Fundraising")
+Tag.create!(name: "Volunteer Opportunity")
+Tag.create!(name: "Protest/Rally")
+Tag.create!(name: "Organizing Meeting")
+Tag.create!(name: "Vigil")
