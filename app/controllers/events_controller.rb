@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:new, :edit]
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
-
 
   # GET /events
   def index
-    @nyevents = Event.where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @sfevents = Event.where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @chievents = Event.where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @bosevents = Event.where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @laevents = Event.where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
-    @dcevents = Event.where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @nyevents = Event.where(approved:true).where(location: "New York, NY").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @sfevents = Event.where(approved:true).where(location: "San Francisco, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @chievents = Event.where(approved:true).where(location: "Chicago, IL").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @bosevents = Event.where(approved:true).where(location: "Boston, MA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @laevents = Event.where(approved:true).where(location: "Los Angeles, CA").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
+    @dcevents = Event.where(approved:true).where(location: "Washington, DC").where("DATE(datetime) >= ?", Date.today - 1.day).order("datetime ASC")
   end
 
   # GET /events/1
@@ -31,10 +31,11 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
-
     if @event.save
-      redirect_to @event, notice: 'Event was successfully created.'
+      EventTag.create(event_id: @event.id, tag_id: Tag.find(params[:event][:tag]).id)
+      redirect_to @event, notice: 'Thank you for submitting an event! It will be reviewed by an administrator shortly.'
     else
+      set_tags  
       render :new
     end
   end
@@ -42,9 +43,12 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   def update
     guard_against_tampering(@event)
-    if @event.update(event_params)
+    tag = Tag.find(params[:event][:tag])
+    @event_tag = EventTag.find_by(event_id: @event.id)
+    if @event.update(event_params) && @event_tag.update(tag_id: tag.id)
       redirect_to @event, notice: 'Event was successfully updated.'
     else
+      set_tags
       render :edit
     end
   end
@@ -58,10 +62,26 @@ class EventsController < ApplicationController
     redirect_to events_url, notice: "Your event, '#{@event.title}' was successfully deleted."
   end
 
+  #Filter Events By Tags
+
+  def filter_by_tag
+    if params[:event][:tag_id] == ""
+      flash[:notice] = "You must select a tag."
+      redirect_to :back
+    else
+      tag = Tag.find(params[:event][:tag_id])
+      @events = tag.events
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def set_tags
+      @tags = Tag.all
     end
 
     # Warden method to prevent non-admins from editing content that is not their own
@@ -87,8 +107,7 @@ class EventsController < ApplicationController
         :zip,
         :location,
         :url,
-        :event_source,
-        :approved?)
+        :approved,
+        :event_source)
     end
-
 end

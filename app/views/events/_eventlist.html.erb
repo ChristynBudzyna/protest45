@@ -1,12 +1,16 @@
  <div class="">
   <h3><%= link_to event.title, event %></h3>
+  <div class="event-user-details">
+    <img src="<%= event.user.avatar_URL %>" />
+    <p><%= event.user.name %></p>
+  </div>
   <p><%= event.datetime.strftime("%A, %B %e - %m:%M%p") %></p>
   <p><%= event.address1 %> </p>
   <p><%= event.address2 %> </p>
     <span><%= event.city %></span>,<span> <%= event.state %></span><span> <%= event.zip %> </span>
   <p>Description: <%= event.description %></p>
 
-  <% if event.url %>
+  <% if event.url != "" %>
     <%= link_to 'Go', event.url %>
   <% end %>
 </div>

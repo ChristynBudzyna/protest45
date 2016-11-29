@@ -17,7 +17,7 @@
 
 <p>
   <strong>Date:</strong>
-  <%= @event.datetime %>
+  <%= @event.datetime.strftime("%A, %B %e - %m:%M%p") %>
 </p>
 
 <p>
@@ -25,17 +25,30 @@
   <%= @event.url %>
 </p>
 
-<p>
-  <strong>Approved?:</strong>
-  <%= @event.approved? %>
-</p>
+<% if current_user && current_user.admin? %>
+  <p>
+    <strong>approved:</strong>
+    <%= @event.approved %>
+  </p>
+<% end %>
 
 <p>
   <strong>Event Creator:</strong>
-  <%= @event.user.name %>
+  <%if @event.user.name%>
+    <%= @event.user.name %>
+  <%else%>
+    No Name Provided
+  <%end%>
 </p>
 
-<% if @event.created_by?(current_user) %>
+<p>
+  <strong>Event Tags:</strong>
+  <%@event.tags.each do |tag|%>
+    <%=tag.name%>
+  <%end%>
+</p>
+
+<% if current_user && (@event.created_by?(current_user) || current_user.admin?) %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <% end %>
-<%= link_to 'Back', events_path %>
+<%= link_to 'Home', events_path %>

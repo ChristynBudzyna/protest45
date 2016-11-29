@@ -1,0 +1,9 @@
+<%if @events.length < 1 %>
+  <h1>No Search Results Found!</h1>
+<%else%>
+<h1>Filter Results</h1>
+  <%@events.each do |event|%>
+    <%= render partial: "eventlist", locals: { event: event } %>
+  <% end %>
+<%end%>
+<%=link_to "Back", events_path%>
