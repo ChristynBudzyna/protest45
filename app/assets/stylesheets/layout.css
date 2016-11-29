@@ -1,0 +1,129 @@
+
+html{
+  height:100%;
+
+}
+a:hover{
+  text-decoration:none !important;
+}
+body{
+color:red;
+padding:3em;
+font-family: 'Montserrat', sans-serif;
+font-size:1.2em;
+height:100%;
+/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,2274cc+74 */
+background: #ffffff; /* Old browsers */
+background-color: -moz-linear-gradient(top, #ffffff 0%, #2274cc 74%); /* FF3.6-15 */
+background-color: -webkit-linear-gradient(top, #ffffff 0%,#2274cc 74%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, #ffffff 0%,#2274cc 74%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#2274cc',GradientType=0 ); /* IE6-9 */
+    margin: 0;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+ul{
+  list-style:none;
+}
+nav{
+  font-size:1.2em;
+
+}
+
+.navbar-default .navbar-nav>.active>a{
+  background-color:#96BF22 !important;
+  color:#fff !important;
+}
+
+.nav-tabs>li{
+  font-size:1.2em !important;
+}
+li{
+  list-style:none !important;
+}
+li.active{background-color:#96BF22 !important;}
+.container{
+  background-color:#fff;
+  width:85%;
+  margin:0 auto;
+  border-radius:10px;
+  border: 2px solid #B2242F;
+}
+.user-form{
+  text-align:center;
+  width:70%;
+  margin:0 auto;
+  font-size:1.2em;
+  padding-bottom:25px;
+}
+.user-form h2{
+  color:#5893B2 !important;
+  margin-bottom:1.2em;
+}
+label{
+  color:#96BF22;
+}
+select#event_tag_id{
+  background-color:#fff;
+  padding:20px;
+}
+input{
+padding:10px;
+border:1px solid #5893B2;
+border-radius:5px;
+margin-bottom:1.2em;}
+input[type=submit]{
+  margin-top:2em;
+  background-color: #5893B2 !important;
+  color:#fff;
+  padding:15px 40px;
+  border-radius:5px;
+}
+#logo-primary{
+  color: #5893B2;
+  font-weight:bold;
+  font-size:3em;
+}
+#logo-secondary{
+  color: #B2242F;
+  font-weight:bold;
+  font-size:3em;
+}
+.navbar{
+  border:none !important;
+}
+.homenav{
+  background-color:transparent !important;
+}
+.navbar-toggle {
+border:none;
+  border: none;
+  background: transparent !important; }
+  .navbar-toggle:hover {
+    background: transparent !important; }
+  .navbar-toggle .icon-bar {
+    width: 22px;
+    transition: all 0.2s; }
+  .navbar-toggle .top-bar {
+    transform: rotate(45deg);
+    transform-origin: 10% 10%; }
+  .navbar-toggle .middle-bar {
+    opacity: 0; }
+  .navbar-toggle .bottom-bar {
+    transform: rotate(-45deg);
+    transform-origin: 10% 90%; }
+
+.navbar-toggle.collapsed .top-bar {
+  transform: rotate(0); }
+.navbar-toggle.collapsed .middle-bar {
+  opacity: 1; }
+.navbar-toggle.collapsed .bottom-bar {
+  transform: rotate(0); }
+
+  .tips{
+  color:#333 !important;
+  padding:20px;
+  font-size:1.2em;
+  line-height:1.8;
+  }

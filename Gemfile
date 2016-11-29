@@ -30,6 +30,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'devise'
 gem 'omniauth-facebook'
 
+
 group :development, :test do
   gem 'pry-rails'
 end
