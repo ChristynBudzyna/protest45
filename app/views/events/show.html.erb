@@ -1,5 +1,12 @@
 <p id="notice"><%= notice %></p>
 
+<% if @event.picture_url != "" %>
+  <img src=<%= @event.picture_url %> />
+<% else %>
+  <!-- add default icon here-->
+  <p></p>
+<% end %>
+
 <p>
   <strong>Title:</strong>
   <%= @event.title %>
