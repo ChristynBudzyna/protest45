@@ -31,11 +31,12 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     @event.user = current_user
+    @event.picture_url = Event.get_FB_picture_url( event_params['event_source'], event_params['url'] )
     if @event.save
       EventTag.create(event_id: @event.id, tag_id: Tag.find(params[:event][:tag]).id)
       redirect_to @event, notice: 'Thank you for submitting an event! It will be reviewed by an administrator shortly.'
     else
-      set_tags  
+      set_tags
       render :new
     end
   end
