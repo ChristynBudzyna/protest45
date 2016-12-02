@@ -3,6 +3,11 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <p id="notice"><%= notice %></p>
+   <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+<%end%>
 
 <ul class="nav nav-tabs city-tabs">
   <li class="active"><a data-toggle="tab" href="#dc">washington, dc</a></li>
@@ -17,11 +22,6 @@
 <div class="tab-content">
   <div id="dc" class="tab-pane fade in active">
     <h3>upcoming events in washington, dc</h3>
-    <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-<%end%>
 
      <% @dcevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
@@ -29,11 +29,7 @@
   </div>
   <div id="ny" class="tab-pane fade">
     <h3>upcoming events in new york city</h3>
-       <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-<%end%>
+
       <% @nyevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
@@ -41,11 +37,6 @@
   <div id="sf" class="tab-pane fade">
 
     <h3>upcoming events in san francisco</h3>
-        <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-<%end%>
 
      <% @sfevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
@@ -54,11 +45,6 @@
   <div id="la" class="tab-pane fade">
     <h3>upcoming events in los angeles</h3>
 
-   <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-<%end%>
 
      <% @laevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
@@ -67,14 +53,6 @@
   <div id="bos" class="tab-pane fade">
     <h3>upcoming events in boston</h3>
 
-
-
-    <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-  <% end %>
-
      <% @bosevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
@@ -82,13 +60,6 @@
   <div id="chi" class="tab-pane fade">
     <h3>upcoming events in chicago</h3>
 
-
-
-     <%=form_tag filter_by_tag_path, method: 'get' do %>
-<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
-    <%=submit_tag "Filter"%>
-  </p>
-  <% end %>
      <% @chievents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
