@@ -16,7 +16,7 @@
 <div class="container">
 <div class="tab-content">
   <div id="dc" class="tab-pane fade in active">
-    <h3>washington, dc events</h3>
+    <h3>upcoming events in washington, dc</h3>
     <%=form_tag filter_by_tag_path, method: 'get' do %>
 <%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
     <%=submit_tag "Filter"%>
@@ -28,7 +28,7 @@
       <% end %>
   </div>
   <div id="ny" class="tab-pane fade">
-    <h3>new york city events</h3>
+    <h3>upcoming events in new york city</h3>
        <%=form_tag filter_by_tag_path, method: 'get' do %>
 <%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
     <%=submit_tag "Filter"%>
@@ -40,7 +40,7 @@
   </div>
   <div id="sf" class="tab-pane fade">
 
-    <h3>san francisco events</h3>
+    <h3>upcoming events in san francisco</h3>
         <%=form_tag filter_by_tag_path, method: 'get' do %>
 <%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
     <%=submit_tag "Filter"%>
@@ -52,7 +52,7 @@
       <% end %>
   </div>
   <div id="la" class="tab-pane fade">
-    <h3>los angeles events</h3>
+    <h3>upcoming events in los angeles</h3>
 
    <%=form_tag filter_by_tag_path, method: 'get' do %>
 <%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
@@ -65,7 +65,7 @@
       <% end %>
   </div>
   <div id="bos" class="tab-pane fade">
-    <h3>boston events</h3>
+    <h3>upcoming events in boston</h3>
 
 
 
@@ -80,7 +80,7 @@
       <% end %>
   </div>
   <div id="chi" class="tab-pane fade">
-    <h3>chicago events</h3>
+    <h3>upcoming events in chicago</h3>
 
 
 

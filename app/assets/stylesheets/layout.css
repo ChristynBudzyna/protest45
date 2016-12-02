@@ -89,12 +89,12 @@ input[type=submit]{
 #logo-primary{
   color: #5893B2;
   font-weight:bold;
-  font-size:3em;
+  font-size:45px;
 }
 #logo-secondary{
   color: #B2242F;
   font-weight:bold;
-  font-size:3em;
+  font-size:45px;
 }
 .navbar{
   border:none !important;
@@ -194,4 +194,17 @@ margin-bottom: 20px;
 
 .container {
   margin-bottom: 70px;
+}
+
+.event-title {
+  margin-top: 0px !important;
+}
+
+.event-details {
+  margin-left: 30px !important;
+}
+
+.go {
+  color: #96BF22;
+  font-size: 1.5em;
 }
