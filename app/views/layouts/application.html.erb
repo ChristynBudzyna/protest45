@@ -24,15 +24,17 @@
           <li id="logo"><a class="navbar-brand" href="/"><span id="logo-primary">protest</span><span id="logo-secondary">45</span></a></li>
          </div><!--navbar-header-->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav nav-det">
+        <ul class="nav navbar-nav nav-det navbar-right">
 
           <% if user_session %>
-          <li class="active"><a href="/events/new"><i class="fa fa-plus-circle" aria-hidden="true"></i> Post a New Event</a></li>
-          <li><%=link_to "Tips for Attending Protests", tips_path%></li>
-          <li><a href="/users/sign_out">Sign Out</a></li>
+          <li><%=link_to "tips for attending protests", tips_path%></li>
+          <li><a href="/users/sign_out">logout</a></li>
+          <li class="active"><a href="/events/new"><i class="fa fa-plus-circle" aria-hidden="true"></i> submit a new event</a></li>
             <% else %>
-          <li><a href="/users/sign_up">Register</a></li>
-          <li><a href="/users/sign_in">Sign In</a></li>
+          <li><%=link_to "tips for attending protests", tips_path%></li>
+          <li><a href="/users/sign_up">sign up</a></li>
+          <li><a href="/users/sign_in">login</a></li>
+           <li class="active submit"><a href="/events/new"><i class="fa fa-plus-circle" aria-hidden="true"></i> submit a new event</a></li>
           <% end %>
         </ul>
       </div><!--collapse-->

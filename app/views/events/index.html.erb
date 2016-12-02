@@ -4,58 +4,91 @@
 
 <p id="notice"><%= notice %></p>
 
+<ul class="nav nav-tabs city-tabs">
+  <li class="active"><a data-toggle="tab" href="#dc">washington, dc</a></li>
+  <li><a data-toggle="tab" href="#ny">new york, ny</a></li>
+  <li><a data-toggle="tab" href="#sf">san francisco, ca</a></li>
+  <li><a data-toggle="tab" href="#la">los angeles, ca</a></li>
+  <li><a data-toggle="tab" href="#bos">boston, ma</a></li>
+  <li><a data-toggle="tab" href="#chi">chicago, il</a></li>
+</ul>
+
 <div class="container">
-
-
-<%=form_tag filter_by_tag_path, method: 'get' do %>
-  <p>Filter by Tag: <%=collection_select :event, :tag_id, Tag.all, :id, :name, include_blank: "Please Select a Tag"%>
+<div class="tab-content">
+  <div id="dc" class="tab-pane fade in active">
+    <h3>washington, dc events</h3>
+    <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
     <%=submit_tag "Filter"%>
   </p>
 <%end%>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a data-toggle="tab" href="#dc">Washington, DC</a></li>
-  <li><a data-toggle="tab" href="#ny">New York, NY</a></li>
-  <li><a data-toggle="tab" href="#sf">San Francisco, CA</a></li>
-  <li><a data-toggle="tab" href="#la">Los Angeles, CA</a></li>
-  <li><a data-toggle="tab" href="#bos">Boston, MA</a></li>
-  <li><a data-toggle="tab" href="#chi">Chicago, IL</a></li>
-</ul>
-
-
-<div class="tab-content">
-  <div id="dc" class="tab-pane fade in active">
-    <h3>Washington, DC Events</h3>
      <% @dcevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
   </div>
   <div id="ny" class="tab-pane fade">
-    <h3>New York City Events</h3>
+    <h3>new york city events</h3>
+       <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+<%end%>
       <% @nyevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
   </div>
   <div id="sf" class="tab-pane fade">
-    <h3>San Francisco Events</h3>
+
+    <h3>san francisco events</h3>
+        <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+<%end%>
+
      <% @sfevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
   </div>
   <div id="la" class="tab-pane fade">
-    <h3>Los Angeles Events</h3>
+    <h3>los angeles events</h3>
+
+   <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+<%end%>
+
      <% @laevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
   </div>
   <div id="bos" class="tab-pane fade">
-    <h3>Boston Events</h3>
+    <h3>boston events</h3>
+
+
+
+    <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+  <% end %>
+
      <% @bosevents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
   </div>
   <div id="chi" class="tab-pane fade">
-    <h3>Chicago Events</h3>
+    <h3>chicago events</h3>
+
+
+
+     <%=form_tag filter_by_tag_path, method: 'get' do %>
+<%= collection_select :event, :tag_id, Tag.all, :id, :name, {prompt: "Filter events by category"}, {class: "form-control"} %>
+    <%=submit_tag "Filter"%>
+  </p>
+  <% end %>
      <% @chievents.each do |event| %>
         <%= render partial: "eventlist", locals: { event: event } %>
       <% end %>
@@ -65,5 +98,4 @@
 
 <br>
 
-<%= link_to 'New Event', new_event_path %>
 </div>
