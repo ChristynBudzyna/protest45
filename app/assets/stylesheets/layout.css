@@ -173,6 +173,11 @@ h3 {
   color: #5893B2 !important;
 }
 
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: #5893B2 !important;
+}
+
 .form-control {
 width: 300px !important;
 display: inline-block !important;
