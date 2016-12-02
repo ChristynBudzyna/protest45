@@ -36,13 +36,18 @@ nav{
   color:#fff !important;
 }
 
+.submit {
+  background-color:#96BF22 !important;
+  color:#fff !important;
+}
+
 .nav-tabs>li{
   font-size:1.2em !important;
 }
 li{
   list-style:none !important;
 }
-li.active{background-color:#96BF22 !important;}
+li.active{}
 .container{
   background-color:#fff;
   width:85%;
@@ -74,21 +79,22 @@ border:1px solid #5893B2;
 border-radius:5px;
 margin-bottom:1.2em;}
 input[type=submit]{
-  margin-top:2em;
-  background-color: #5893B2 !important;
+  margin-top:1em;
+  background-color: #96BF22 !important;
   color:#fff;
-  padding:15px 40px;
+  padding:7px 40px;
   border-radius:5px;
+  display:inline-block;
 }
 #logo-primary{
   color: #5893B2;
   font-weight:bold;
-  font-size:3em;
+  font-size:45px;
 }
 #logo-secondary{
   color: #B2242F;
   font-weight:bold;
-  font-size:3em;
+  font-size:45px;
 }
 .navbar{
   border:none !important;
@@ -127,3 +133,106 @@ border:none;
   font-size:1.2em;
   line-height:1.8;
   }
+
+.navbar-default .navbar-nav>li>a {
+  color: #337ab7 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.city-tabs {
+  margin-left: 7px;
+  margin-bottom: 0px !important;
+}
+
+.city-tabs>li.active>a{
+  border-top: 2px solid #B2242F !important;
+  border-left: 2px solid #B2242F !important;
+  border-right: 2px solid #B2242F !important;
+  background-color: none !important;
+  color: #5893B2 !important;
+}
+
+.city-tabs {
+  border-bottom: 0px !important;
+}
+
+.city-tabs>li {
+  margin-bottom: -2px !important ;
+}
+
+.city-tabs>li>a:hover {
+  color: #5893B2  !important;
+}
+
+.city-tabs>li>a {
+  color: #777 !important;
+}
+
+h3 {
+  color: #5893B2 !important;
+}
+
+h1, h2, h3, h4 {
+  font-family: 'Montserrat', sans-serif;
+  color: #5893B2 !important;
+}
+
+.form-control {
+width: 300px !important;
+display: inline-block !important;
+margin-bottom: 20px;
+}
+
+.footer {
+  background-color: white;
+  padding-top: 15px;
+  color: #337ab7 !important;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
+.container {
+  margin-bottom: 70px;
+}
+
+.event-title {
+  margin-top: 0px !important;
+}
+
+.event-details {
+  margin-left: 30px !important;
+}
+
+.go {
+  color: #96BF22;
+  font-size: 1.5em;
+}
+
+.chip {
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #96BF22;
+    color: white;
+    margin: 10px 0px;
+
+}
+
+.event-info-holder {
+  color: black;
+}
+
+.form-info-holder {
+  padding: 20px;
+}
+
+.event {
+  margin: 20px;
+}
+
+.datetime {
+  width: 150px !important;
+  margin-top: 10px !important;
+}

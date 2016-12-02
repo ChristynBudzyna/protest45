@@ -1,8 +1,10 @@
 
-<h1> Unapproved Events </h1>
-<% @events.each do |event| %>
- <div class="">
-  <h3><%= link_to event.title, event %></h3>
+<div class="container">
+  <h1> Unapproved Events </h1>
+  <% @events.each do |event| %>
+   <div class="">
+    <h3><%= link_to event.title, event %></h3>
 
-<% end %>
+  <% end %>
+  </div>
 </div>

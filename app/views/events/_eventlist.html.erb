@@ -1,16 +1,38 @@
- <div class="">
-  <h3><%= link_to event.title, event %></h3>
-  <div class="event-user-details">
-    <img src="<%= event.user.avatar_URL %>" />
-    <p><%= event.user.name %></p>
-  </div>
-  <p><%= event.datetime.strftime("%A, %B %e - %m:%M%p") %></p>
-  <p><%= event.address1 %> </p>
-  <p><%= event.address2 %> </p>
-    <span><%= event.city %></span>,<span> <%= event.state %></span><span> <%= event.zip %> </span>
-  <p>Description: <%= event.description %></p>
+ <div class="container-fluid event">
 
-  <% if event.url != "" %>
-    <%= link_to 'Go', event.url %>
-  <% end %>
+<!--   <div class="event-user-details">
+    <img src="<%= event.user.avatar_URL %>" />
+     <p><%= event.user.name %></p>
+  </div>
+ -->
+<div class="row">
+  <div class="col-md-2">
+      <% if event.picture_url != "" %>
+      <img src= <%= event.picture_url %> />
+    <% else %>
+      <img src="http://placehold.it/200/09f/fff.png">
+    <% end %>
+  </div>
+    <div class="col-md-7 event-details">
+      <h3 class="event-title"><%= link_to event.title, event %></h3>
+      <p><%= event.datetime.strftime("%A, %B %e - %m:%M%p") %></p>
+      <p> <span><%= event.address1 %> <%= event.address2 %> </span>
+        <span><%= event.city %></span>,<span> <%= event.state %></span><span> <%= event.zip %> </span></p>
+      <p><%= link_to "learn more", event %></p>
+       <%event.tags.each do |tag|%>
+    <div class="chip">
+      <%=tag.name%>
+    </div>
+    <% end %>
+    </div>
+    <div class="col-md-2">
+      <% if event.url != "" %>
+        <%= link_to 'go >', event.url, class: "go"%>
+      <% end %>
+    </div>
+  </div>
+
+
+
+
 </div>
