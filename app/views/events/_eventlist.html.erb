@@ -18,12 +18,21 @@
       <p><%= event.datetime.strftime("%A, %B %e - %m:%M%p") %></p>
       <p> <span><%= event.address1 %> <%= event.address2 %> </span>
         <span><%= event.city %></span>,<span> <%= event.state %></span><span> <%= event.zip %> </span></p>
-      <p><%= event.description %></p>
+      <p><%= link_to "learn more", event %></p>
+       <%event.tags.each do |tag|%>
+    <div class="chip">
+      <%=tag.name%>
+    </div>
+    <% end %>
     </div>
     <div class="col-md-2">
       <% if event.url != "" %>
         <%= link_to 'go >', event.url, class: "go"%>
       <% end %>
     </div>
-</div>
+  </div>
+
+
+
+
 </div>

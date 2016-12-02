@@ -208,3 +208,18 @@ margin-bottom: 20px;
   color: #96BF22;
   font-size: 1.5em;
 }
+
+.chip {
+    display: inline-block;
+    padding: 5px;
+    font-size: 12px;
+    border-radius: 10px;
+    background-color: #96BF22;
+    color: white;
+    margin: 10px 0px;
+
+}
+
+.event-info-holder {
+  color: black;
+}
